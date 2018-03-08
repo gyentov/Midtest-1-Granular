@@ -663,10 +663,10 @@ function examColorBar() {
 	var div = document.getElementById("scriptResult");
 	div.innerHTML = "&nbsp;";
 	N = 16;
-	for(var i = 0; i < N; i++) {
+	for(var i = N+1; i >-1 ; i--) {
 		var sp = document.createElement("span");
 		var x = i * 16 - 1;
-		var color = int2rgb(255, 255 - x, 255 -x );
+		var color = int2rgb(0, 255 - x, 0 ); //color/rgb.js
 		sp.style.background = color;
 		sp.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;\
 		&nbsp;&nbsp;&nbsp;&nbsp;";
