@@ -707,9 +707,17 @@ function examDrawCircle() {
 function examMathJaxRootFormula() {
 	var div = document.getElementById("scriptResult");	
 	var str = "";
+	/*
 	str += "\\begin{equation}";
 	str += "x_{1,2} = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}";
 	str += "\\end{equation}";
+	*/
+	str += "\\begin{equation} ax^2 + bx + c = 0 \\tag{1} \\end{equation}"
+	str +="\\begin{equation}x_{1,2} = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}  \\tag{2} \\end{equation}"
+	str += "\\begin{equation} x^2 + \\frac{b}{a}x + \\frac{c}{a} = 0 \\tag{3} \\end{equation}"
+	str += "\\begin{equation} (x-x_1)(x-x_2) = 0 \\tag{4} \\end{equation}"
+	str += "\\begin{equation} x_1 +x_2 = - \\frac{b}{a} \\tag{5} \\end{equation}"
+	str += "\\begin{equation} x_1 \\cdot x_2 =\\frac{c}{a} \\tag{6} \\end{equation}"
 	updateMath("scriptResult", str);
 }
 
