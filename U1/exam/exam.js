@@ -693,12 +693,29 @@ function examDrawCircle() {
 	div.innerHTML = "&nbsp;";
 	var can = document.createElement("canvas");
 	div.appendChild(can);
+	
 	var cx = can.getContext("2d");
-	cx.fillStyle = "#aaf";
-	cx.strokeStyle = "#f00";
-	cx.lineWidth = 3;
+	cx.fillStyle = "#33ccff";
+	cx.strokeStyle = "#0000cc";
+	cx.lineWidth = 6;
 	cx.beginPath();
 	cx.arc(50, 50, 40, 0, 2 * Math.PI);
+	cx.fill();
+	cx.stroke();
+
+	cx.fillStyle = "#99ff99";
+	cx.strokeStyle = "#009900";
+	cx.lineWidth = 6;
+	cx.beginPath();
+	cx.arc(136, 50, 40, 0, 2 * Math.PI);
+	cx.fill();
+	cx.stroke();
+
+	cx.fillStyle = "#ffcccc";
+	cx.strokeStyle = "#cc0000";
+	cx.lineWidth = 6;
+	cx.beginPath();
+	cx.arc(222, 50, 40, 0, 2 * Math.PI);
 	cx.fill();
 	cx.stroke();
 }
