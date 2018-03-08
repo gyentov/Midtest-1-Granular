@@ -677,11 +677,12 @@ function examColorBar() {
 // 20180304.0530 ok
 function examLetterConfiguration() {
 	var div = document.getElementById("scriptResult");
-	var str = "Computation";
-	var N = str.length;
+	var str = "Komputasi Sistem Fisis";
+	var N = str.length +3;
 	var str2 = "";
-	for(var i = 0; i < N; i++) {
-		str2 += str.substring(0, i + 1) + "<br/>";
+	while(N>-1) {
+		str2 += str.substring(0, N - 3) + "<br/>";
+		N = N-3;
 	}
 	div.innerHTML = str2;
 }
@@ -732,7 +733,8 @@ function examClear() {
 // 20180303.2249 ok
 function examHelloWorld() {
 	var div = document.getElementById("scriptResult");
-	div.innerHTML = "Hello, World!";
+	div.innerHTML = "<br>Selamat pagi dan selamat datang di folder solusi saya untuk U1. </br> <br>Nama saya adalah Feby Genta Ananda. </br> <br>NIM saya adalah 10214003. </br> <br>Senang berkenalan dengan Anda.";
+
 }
 
 // 20180304.0937 ok
