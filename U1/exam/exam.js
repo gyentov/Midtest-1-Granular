@@ -718,8 +718,8 @@ function examDisplaySeries() {
 	var div = document.getElementById("scriptResult");
 	var N = 10;
 	var str = "";
-	for(var i = 0; i < N; i++) {
-		str += i + "<br/>";
+	for(var i = 0; i < N+1; i++) {
+		str += i*i + 2 + "<br/>";
 	}
 	div.innerHTML = str;
 }
