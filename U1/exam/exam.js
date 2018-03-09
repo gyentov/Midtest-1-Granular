@@ -368,7 +368,7 @@ function examRandomLines() {
 	var iend = 1000;
 	var sel = window.event.target;
 	sel.disabled = true;
-	
+	var theta = randInt(-180, 180);
 	var tid = setInterval(randomLine, 10);
 	
 	var x = w / 2;
@@ -381,11 +381,17 @@ function examRandomLines() {
 			sel.disabled = false;
 		}
 		
-		var theta = randInt(-180, 180);
+		
+		if((randInt(0,2)/2)<0.5){
+			theta += 90;
+		}else{
+			theta -= 90;
+		}
+		
 		var dr = 10;
 		var dx = dr * Math.cos(theta * Math.PI / 180);
 		var dy = dr * Math.sin(theta * Math.PI / 180);
-		
+
 		var j = (i / iend) * 255;
 		cx.strokeStyle = int2rgb(255 - j, 0, j);
 		cx.beginPath();
