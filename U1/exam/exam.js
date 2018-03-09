@@ -614,12 +614,12 @@ function examProgressBar() {
 	var div = document.getElementById("scriptResult");
 	div.innerHTML = "&nbsp;";
 	var i = 0;
-	var di = 5;
+	var di = 2;
 	var iend = 100;
 	var sel = window.event.target;
 	sel.disabled = true;
 	
-	var tid = setInterval(progressBar, 100);
+	var tid = setInterval(progressBar, 200);
 	
 	function progressBar() {
 		if(i >= iend) {
@@ -628,7 +628,7 @@ function examProgressBar() {
 			sel.disabled = false;
 		}
 		var N = Math.round(i / di);
-		var s = "=".repeat(N) + " " + i + " %";
+		var s = "#".repeat(N) + " " + i + " %";
 		div.innerHTML = s;
 		i += di;
 	}
