@@ -418,29 +418,84 @@ function examToggleButton() {
 	var eout = document.getElementById("scriptResult");
 	eout.innerHTML = "";
 	
-	var div = document.createElement("div");
-	div.style.width = "40px";
-	div.style.height = "40px";
-	div.style.border = "1px solid #000";
-	div.style.background = "#eee";
+	var div1 = document.createElement("div");
+	div1.style.display = "inline-block";
+	div1.style.width = "40px";
+	div1.style.height = "40px";
+	div1.style.border = "1px solid #000";
+	div1.style.background = "#eee";
 	
-	var btn = document.createElement("button");
-	btn.innerHTML = "Off";
-	btn.style.width = "42px";
-	btn.style.height = "20px";
-	btn.addEventListener("click", switchOnOff);
+	var btn1 = document.createElement("button");
+	btn1.innerHTML = "Off";
+	btn1.style.width = "42px";
+	btn1.style.height = "20px";
+	btn1.addEventListener("click", switchOnOff1);
 	
-	eout.appendChild(div);
-	eout.appendChild(btn);
+	var div2 = document.createElement("div");
+	div2.style.display = "inline-block";
+	div2.style.width = "40px";
+	div2.style.height = "40px";
+	div2.style.border = "1px solid #000";
+	div2.style.background = "#eee";
+
+	var btn2 = document.createElement("button");
+	btn2.innerHTML = "Off";
+	btn2.style.width = "42px";
+	btn2.style.height = "20px";
+	btn2.addEventListener("click", switchOnOff2);
+
+	var div3 = document.createElement("div");
+	div3.style.display = "inline-block";
+	div3.style.width = "40px";
+	div3.style.height = "40px";
+	div3.style.border = "1px solid #000";
+	div3.style.background = "#eee";
+
+	var btn3 = document.createElement("button");
+	btn3.innerHTML = "Off";
+	btn3.style.width = "42px";
+	btn3.style.height = "20px";
+	btn3.addEventListener("click", switchOnOff3);
+
+	eout.appendChild(div1);
+	eout.appendChild(div2);
+	eout.appendChild(div3);
+	var enter = document.createElement("br");
+	eout.appendChild(enter);
+	eout.appendChild(btn1);
+	eout.appendChild(btn2);
+	eout.appendChild(btn3);
 	
-	function switchOnOff() {
-		var btn = window.event.target;
-		if(btn.innerHTML == "Off") {
-			btn.innerHTML = "On";
-			div.style.background = "#faa";
+	function switchOnOff1() {
+		//var btn = window.event.target;
+		if(btn1.innerHTML == "Off") {
+			btn1.innerHTML = "On";
+			div1.style.background = "#faa";
 		} else {
-			btn.innerHTML = "Off";
-			div.style.background = "#eee";
+			btn1.innerHTML = "Off";
+			div1.style.background = "#eee";
+		}
+	}
+
+	function switchOnOff2() {
+		//var btn = window.event.target;
+		if(btn2.innerHTML == "Off") {
+			btn2.innerHTML = "On";
+			div2.style.background = "#9aff9a";
+		} else {
+			btn2.innerHTML = "Off";
+			div2.style.background = "#eee";
+		}
+	}
+
+	function switchOnOff3() {
+		//var btn = window.event.target;
+		if(btn3.innerHTML == "Off") {
+			btn3.innerHTML = "On";
+			div3.style.background = "#a9ebf7";
+		} else {
+			btn3.innerHTML = "Off";
+			div3.style.background = "#eee";
 		}
 	}
 }
@@ -460,9 +515,18 @@ function examChartXY() {
 		
 	eout.appendChild(ecan);
 	
-	var x = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-	var y = [-7, 0, 5, 8, 9, 8, 5, 0, -7];
-	var series = new XYSeries("series1", x, y);
+	A=2;
+	T=10;
+	tmax=10;
+
+	var t =[];
+	var x =[];
+	for(i=0; i<tmax+1; i++){
+		t.push(i);
+		x.push(A*Math.sin(2*Math.PI*i/T));
+	}
+
+	var series = new XYSeries("series1", t, x);
 	var chart = new Chart2("drawingArea");
 	chart.yAxis.Ntics = 4;
 	chart.xAxis.Ntics = 8;
@@ -485,8 +549,8 @@ function examTextareaMatrix() {
 	erig.id = "mathjax-matrix"
 	
 	var etxa = document.createElement("textarea");
-	etxa.style.width = "120px";
-	etxa.style.height = "120px";
+	etxa.style.width = "150px";
+	etxa.style.height = "150px";
 	etxa.style.overflowY = "scroll"
 	etxa.value = "\\frac{1}{10} 2 3 \\log{3}{9}\n"
 	+ "0 4 \\sin{x^2} 4\n"
@@ -556,7 +620,7 @@ function examTable() {
 	data[0] = ["t","x","y"];
 	for(i=1; i<t+1; i++){
 			data[i] = 
-			[i, 
+			[	i, 
 				Number.parseFloat(A*Math.cos(2*Math.PI*i/T)).toFixed(3),
 				Number.parseFloat( A*Math.sin(2*Math.PI*i/T)).toFixed(3)
 			];
