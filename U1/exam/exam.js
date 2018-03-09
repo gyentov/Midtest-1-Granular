@@ -80,14 +80,14 @@ function examThreeGrains() {
 		p.v = new Vect3(0.1, 0.05, 0);
 		pars.push(p);
 		p = new Sphere();
-		p.m = 6;
-		p.d = 0.3;
+		p.m = 4;
+		p.d = 0.2;
 		p.r = new Vect3(0.25, 0.5, 0.25);
 		p.v = new Vect3(0.0, 0.05, 0);
 		pars.push(p);
 		p = new Sphere();
-		p.m = 2;
-		p.d = 0.1;
+		p.m = 4;
+		p.d = 0.2;
 		p.r = new Vect3(0.8, 0.8, 0.25);
 		p.v = new Vect3(-0.02, 0.05, 0);
 		pars.push(p);
