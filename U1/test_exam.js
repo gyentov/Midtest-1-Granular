@@ -68,7 +68,7 @@ function test_exam() {
 	eout.style.padding = "10px";
 	eout.style.fontFamily = "Arial";
 	eout.style.fontSize = "12px";
-	eout.style.height = "200px";
+	eout.style.height = "300px";
 	
 	// Set document layout
 	document.body.appendChild(etop);

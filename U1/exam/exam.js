@@ -548,15 +548,20 @@ function examTextareaMatrix() {
 function examTable() {
 	var div = document.getElementById("scriptResult");
 	div.innerHTML = "";
-	var data = [
-		["t", "v", "x"],
-		[0, 0, 0],
-		[1, 2, 1],
-		[2, 4, 4],
-		[3, 6, 9],
-		[4, 8, 16],
-		[5, 10, 25]
-	];
+	t=10;
+	T=10;
+	A=2;
+
+	data = [];
+	data[0] = ["t","x","y"];
+	for(i=1; i<t+1; i++){
+			data[i] = 
+			[i, 
+				Number.parseFloat(A*Math.cos(2*Math.PI*i/T)).toFixed(3),
+				Number.parseFloat( A*Math.sin(2*Math.PI*i/T)).toFixed(3)
+			];
+	}	
+
 	var tab = document.createElement("table");
 	tab.style.background = "#fee";
 	var ROW = data.length;
@@ -596,16 +601,43 @@ function examSimpleStatistics() {
 	var N = 20;
 	var x = randIntN(min, max, N);
 	var xsum = 0;
+	var xmed =0;
 	for(var i = 0; i < N; i++) {
 		xsum += x[i];
 	}
 	var xavg = xsum / N;
+
+	//insertion sort
+	for(i=1; i<N; i++){
+		for(j=0; j<N; j++){
+			if (x[j] > x[j+1] ) {
+				dummy = x[j];
+				x[j]= x[j+1];
+				x[j+1] = dummy;
+			}	
+		}	
+	}
+
+	if( N%2 ==0 ){
+		xmed = 0.5*( x[Math.floor(N/2-1)] + x[(Math.floor(N/2-1)+1)] ) ;
+	}else{
+		xmed = x[ Math.floor(N/2-1)+1 ];
+	}
+
+	sumasi = 0;
+	for(i=0; i<N; i++){
+		sumasi += Math.pow(x[i]-xavg,2);	
+	}
+	xdev = Math.sqrt( sumasi/(N-1) );
+
 	var str = "xmin = " + min + "<br/>";
 	str += "xmax = " + max + "<br/>";
 	str += "xsum = " + xsum + "<br/>";
 	str += "x = [" + x + "]<br/>";
 	str += "N = " + N + "<br/>";
-	str += "xavg = " + xavg;
+	str += "xavg = " + xavg + "<br/>";
+	str += "xmed = " + xmed + "<br/>";
+	str += "xdev = " + Number.parseFloat(xdev).toFixed(2);
 	div.innerHTML = str;
 }
 
