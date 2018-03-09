@@ -643,19 +643,44 @@ function examButtonClick() {
 	btn.innerHTML = "Not yet clicked";
 	btn.addEventListener("click", buttonClick);
 	div.appendChild(btn);
-	var clicked = 0;
-	
+
+	var btn2 = document.createElement("button");
+	btn2.style.width = "120px";
+	btn2.innerHTML = "Not yet clicked";
+	btn2.addEventListener("click", buttonClick2);
+	div.appendChild(btn2);
+
+	var clicked1 = 0; //untuk simpan jumlah klik tombol1
+	var clicked2 = 0; //untuk simpan jumlah klik tombol2
+
 	function buttonClick() {
-		clicked++;
-		var target = window.event.target;
-		if(clicked == 1) {
-			target.innerHTML = "Clicked once";
-		} else if(clicked == 2) {
-			target.innerHTML = "Clicked twice";
-		} else {
-			target.innerHTML = "Clicked " + clicked + " times";
+		clicked2++;
+		//var target = window.event.target;
+		if(clicked2 == 1) {
+			btn2.innerHTML = "Clicked once";
+		} else if(clicked2 == 2) {
+			btn2.innerHTML = "Clicked twice";
+		} else if(clicked2==0){
+			btn2.innerHTML="Not yet clicked";
+		}else{
+			btn2.innerHTML = "Clicked " + clicked2 + " times";
 		}
 	}
+
+	function buttonClick2() {
+		clicked1++;
+		//var target = window.event.target;
+		if(clicked1 == 1) {
+			btn.innerHTML = "Clicked once";
+		} else if(clicked1 == 2) {
+			btn.innerHTML = "Clicked twice";
+		} else if(clicked1==0){
+			btn.innerHTML="Nozt yet clicked";
+		} else{
+			btn.innerHTML = "Clicked " + clicked1 + " times";
+		}
+	}
+
 }
 
 // 20180304.0545 ok
@@ -663,7 +688,7 @@ function examColorBar() {
 	var div = document.getElementById("scriptResult");
 	div.innerHTML = "&nbsp;";
 	N = 16;
-	for(var i = N+1; i >-1 ; i--) {
+	for(var i = N; i >-1 ; i--) {
 		var sp = document.createElement("span");
 		var x = i * 16 - 1;
 		var color = int2rgb(0, 255 - x, 0 ); //color/rgb.js
