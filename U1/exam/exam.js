@@ -488,10 +488,10 @@ function examTextareaMatrix() {
 	etxa.style.width = "120px";
 	etxa.style.height = "120px";
 	etxa.style.overflowY = "scroll"
-	etxa.value = "1 2 3 4\n"
-	+ "0 4 0 4\n"
-	+ "1 3 9 7\n"
-	+ "6 4 5 8";
+	etxa.value = "\\frac{1}{10} 2 3 \\log{3}{9}\n"
+	+ "0 4 \\sin{x^2} 4\n"
+	+ "1 -\\exp{y} 9 7\n"
+	+ "6 4 5 \\frac{z}{x}";
 	
 	var ebtn = document.createElement("button");
 	ebtn.innerHTML = "MathJax matrix";

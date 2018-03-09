@@ -1,2 +1,2 @@
-color/rgb/js
-mathjax
+color/rgb.js
+mathjax/update.js
