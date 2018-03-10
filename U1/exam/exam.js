@@ -865,6 +865,73 @@ function examMathJaxRootFormula() {
 	updateMath("scriptResult", str);
 }
 
+function examTextareaAndChartXY(){
+	var eout = document.getElementById("scriptResult");
+	eout.innerHTML = "";
+
+	var etxa = document.createElement("textarea");
+	etxa.style.width = "150px";
+	etxa.style.height = "150px";
+	etxa.style.overflowX = "scroll";
+	etxa.value = "x= 1 2 3 4 5 6\n"
+	+"y= 6 5 4 3 2 1";
+
+	var btn = document.createElement("button");
+	btn.innerHTML = "Plot Data";
+	btn.style.width = "125px";
+	btn.addEventListener("click", Click);
+
+	var ecan = document.createElement("canvas");
+	ecan.width = "300";
+	ecan.height = "200";
+	ecan.style.width = "300px";
+	ecan.style.height = "200px";
+	ecan.id = "drawingArea"
+	ecan.style.background = "#f8f8f8";
+		
+
+	eout.appendChild(etxa);
+	eout.appendChild(btn);
+	eout.appendChild(ecan);
+
+	function Click (){
+		var content = etxa.value;
+		var lines = content.split("\n");
+		var M = [];
+		for(var j = 0; j < lines.length; j++) {
+			var words = lines[j].split(" ");
+			var row = [];
+			for(var i = 0; i < words.length-1; i++) {
+				if(words[i] != "x=" ||  words[i] != "y=" ){
+					var Mel = words[i+1];
+					row.push(Mel);
+				}
+			}
+			M.push(row);
+		}
+		console.log(M[0].length);
+
+		var x = [];
+		var y = [];
+		for(i = 0; i<M[0].length; i++){
+			x[i] = parseFloat(M[0][i]);
+		};
+		for(j = 0; j<M[1].length; j++){
+			y[j] = parseFloat(M[1][j]);
+		};
+		console.log(x);
+		console.log(y);
+
+		var series = new XYSeries("series1", x, y);
+		var chart = new Chart2("drawingArea");
+		chart.yAxis.Ntics = 4;
+		chart.xAxis.Ntics = 8;
+		chart.addSeries(series);
+		chart.drawSeries("series1");
+	};
+
+}
+
 // 20180303.2308 ok
 function examDisplaySeries() {
 	var div = document.getElementById("scriptResult");
@@ -924,6 +991,9 @@ function executeFunctionByValue(value) {
 			break;
 		case "Table":
 			examTable();
+			break;
+		case "Textarea and chart xy" :
+			examTextareaAndChartXY();
 			break;
 		default:
 	}
