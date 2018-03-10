@@ -888,7 +888,6 @@ function examTextareaAndChartXY(){
 	ecan.style.height = "200px";
 	ecan.id = "drawingArea"
 	ecan.style.background = "#f8f8f8";
-		
 
 	eout.appendChild(etxa);
 	eout.appendChild(btn);
@@ -909,7 +908,6 @@ function examTextareaAndChartXY(){
 			}
 			M.push(row);
 		}
-		console.log(M[0].length);
 
 		var x = [];
 		var y = [];
@@ -919,8 +917,6 @@ function examTextareaAndChartXY(){
 		for(j = 0; j<M[1].length; j++){
 			y[j] = parseFloat(M[1][j]);
 		};
-		console.log(x);
-		console.log(y);
 
 		var series = new XYSeries("series1", x, y);
 		var chart = new Chart2("drawingArea");
@@ -932,6 +928,29 @@ function examTextareaAndChartXY(){
 
 }
 
+function examArrayOfCircle(){
+	var div = document.getElementById("scriptResult");
+	div.innerHTML = "&nbsp;";
+	div.style.width = "500px";
+	div.style.height= "500px";
+	var can = document.createElement("canvas");
+	can.width = "500";
+	can.height = "500";
+	div.appendChild(can);
+	var cx = can.getContext("2d");
+
+	for (i=1; i<5; i++){
+		for(j=0; j<i; j++){
+			cx.fillStyle = "#33ccff";
+			cx.strokeStyle = "#0000cc";
+			cx.lineWidth = 6;
+			cx.beginPath();
+			cx.arc( (2*j+1)*50,(2*i-1)*50, 40, 0, 2 * Math.PI);
+			cx.fill();
+			cx.stroke();
+		}
+	}
+}
 // 20180303.2308 ok
 function examDisplaySeries() {
 	var div = document.getElementById("scriptResult");
@@ -994,6 +1013,9 @@ function executeFunctionByValue(value) {
 			break;
 		case "Textarea and chart xy" :
 			examTextareaAndChartXY();
+			break;
+		case "examArrayOfCircle" :
+			examArrayOfCircle();
 			break;
 		default:
 	}
