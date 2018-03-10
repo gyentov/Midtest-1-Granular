@@ -1016,7 +1016,7 @@ function examDrawCircularMotion(){
 		cx.fillStyle = "#33ccff";
 		cx.strokeStyle = color;
 		cx.beginPath();
-		cx.arc(x, y, 4, 0, 2 * Math.PI);
+		cx.arc(x, y, 20, 0, 2 * Math.PI);
 		cx.stroke();
 		cx.fill();
 	}
@@ -1279,6 +1279,57 @@ function examRandomDataChart(){
 		}
 	}
 }
+
+function examMyProject(){
+	var div = document.getElementById("scriptResult");
+	div.innerHTML = "<center><b>Selamat Datang di Proyek 10214003</b></center> <br>"
+	+"Silahkan gunakan mesin pencari Google di bawah ini.<br>";
+	
+	var txa = document.createElement("textarea");
+	txa.style.width = "336px";
+
+	var btn = document.createElement("button");
+	btn.innerHTML = "Search Google !";
+	btn.addEventListener("click",search)
+	
+	var btn2 = document.createElement("button");
+	btn2.innerHTML = "Search Bing !";
+	btn2.addEventListener("click",search2)
+
+	var btn3 = document.createElement("button");
+	btn3.innerHTML = "Search Wikipedia !";
+	btn3.addEventListener("click",search3)
+
+	var br = document.createElement("br");
+	div.appendChild(txa)
+	div.appendChild(br);
+	div.appendChild(btn);
+	div.appendChild(btn2);
+	div.appendChild(btn3);
+
+	function search(){
+		var content = txa.value;
+		url = "https://www.google.co.id/search?q="+content;
+		var win = window.open(url, '_blank');
+		win.focus();
+	}
+
+	function search2(){
+		var content = txa.value;
+		url = "https://www.bing.com/search?q="+content;
+		var win = window.open(url, '_blank');
+		win.focus();
+	}
+
+	function search3(){
+		var content = txa.value;
+		url = "https://en.wikipedia.org/wiki/Special:Search?search="+content;
+		var win = window.open(url, '_blank');
+		win.focus();
+	}
+	
+}
+
 // 20180303.2249 ok
 function examClear() {
 	var div = document.getElementById("scriptResult");
@@ -1343,6 +1394,9 @@ function executeFunctionByValue(value) {
 		case "Random Data Chart" :
 			examRandomDataChart();
 			break;
+		case " My Project" :
+			examMyProject();
+		break;
 		default:
 	}
 }
