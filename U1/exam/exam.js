@@ -951,6 +951,92 @@ function examArrayOfCircle(){
 		}
 	}
 }
+
+function examDrawCircularMotion(){
+	// Create a div container
+	var div = document.getElementById("scriptResult");
+	div.innerHTML = "&nbsp;";
+	div.style.width = "500px";
+	div.style.height= "500px";
+	
+	// Create buttons
+	var b3 = document.createElement("button");
+	b3.innerHTML = "Start";
+	b3.style.width = "50px";
+	b3.addEventListener("click", toggle);
+	
+	var c = document.createElement("canvas");
+	c.id = "drawingboard";
+	c.width = 400;
+	c.height = 400;
+	c.style.border = "1px solid #ccc";
+	
+	div.appendChild(c);
+	div.appendChild(b3);
+
+	// Define physical parameters
+	var A = 50;
+	var T = 10;
+	var xc = 200;
+	var yc = 200;
+	var t = 0;
+	
+	// Define variable for setInterval
+	var cf;
+	var SIMULATING = false;
+	
+	// Start and stop simulation
+	function toggle() {
+		if(!SIMULATING) {
+			b3.innerHTML = "Stop";
+			cf = setInterval(simulate, 100);
+		} else {
+			b3.innerHTML = "Start";
+			clearInterval(cf);
+		}
+		SIMULATING = !SIMULATING;
+	}
+	
+	// Perform simulation
+	function simulate() {
+		clear("drawingboard", "#fff");
+		var x = xc + A*Math.cos(2*Math.PI*t/T);
+		var y = yc + A*Math.sin(2*Math.PI*t/T);
+		drawCircle("drawingboard", x, y, "#f00");
+		
+		t++;
+		if(t>10){
+			t=0;
+		}
+	}
+	
+	// Draw a circle
+	function drawCircle(id, x, y, color) {
+		var cx = document.getElementById(id).getContext("2d");
+		cx.fillStyle = "#33ccff";
+		cx.strokeStyle = color;
+		cx.beginPath();
+		cx.arc(x, y, 4, 0, 2 * Math.PI);
+		cx.stroke();
+		cx.fill();
+	}
+		
+	// Clear textarea or canvas with color
+	function clear() {
+		var id = arguments[0];
+		var el = document.getElementById(id);
+		if(arguments.length == 1) {
+			el.value = "";
+		} else if(arguments.length == 2) {
+			var color = arguments[1];
+			var cx = el.getContext("2d");
+			cx.fillStyle = color;
+			cx.fillRect(0, 0, c.width, c.height);
+		}
+	}
+		
+
+}
 // 20180303.2308 ok
 function examDisplaySeries() {
 	var div = document.getElementById("scriptResult");

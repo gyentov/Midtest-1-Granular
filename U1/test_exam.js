@@ -35,7 +35,8 @@ function test_exam() {
 		["Random lines", examRandomLines],
 		["Three grains", examThreeGrains],
 		["Textarea and chart xy", examTextareaAndChartXY],
-		["Array of Circle", examArrayOfCircle]
+		["Array of Circle", examArrayOfCircle],
+		["Draw Circular Motion", examDrawCircularMotion]
 	];
 	
 	// Add menu using option element
