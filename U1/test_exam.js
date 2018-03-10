@@ -38,7 +38,8 @@ function test_exam() {
 		["Array of Circle", examArrayOfCircle],
 		["Draw Circular Motion", examDrawCircularMotion],
 		["Dynamic Color", examDynamicColor],
-		["Matrix addition Mathjax", examMatrixAdditionMathJax]
+		["Matrix addition Mathjax", examMatrixAdditionMathJax],
+		["Random data chart", examRandomDataChart]
 	];
 	
 	// Add menu using option element

@@ -1221,6 +1221,64 @@ function examDisplaySeries() {
 	div.innerHTML = str;
 }
 
+function examRandomDataChart(){
+	var eout = document.getElementById("scriptResult");
+	eout.innerHTML = "";
+
+	var btn = document.createElement("button");
+	btn.innerHTML = "Plot Data";
+	btn.style.width = "125px";
+	btn.addEventListener("click", Click);
+
+	var sel = window.event.target;
+	var ecan = document.createElement("canvas");
+	ecan.width = "300";
+	ecan.height = "200";
+	ecan.style.width = "300px";
+	ecan.style.height = "200px";
+	ecan.id = "drawingArea"
+	ecan.style.background = "#f8f8f8";
+
+	eout.appendChild(btn);
+	eout.appendChild(ecan);
+
+	var x = [];
+	var y = [];
+
+	var cf;
+	var SIMULATING = false;
+
+	function Click (){
+
+		if(!SIMULATING) {
+			btn.innerHTML = "Stop";
+			cf = setInterval( gambar, 100);
+			sel.disabled = true;
+		} else {
+			btn.innerHTML = "Start";
+			clearInterval(cf);
+			sel.disabled = false;
+		}
+		SIMULATING = !SIMULATING;
+	}
+	var i =0;
+	i++;
+	function gambar(){
+		y.push(randInt(-100, 100));
+		x.push(i++);
+		var series = new XYSeries("series1", x, y);
+		var chart = new Chart2("drawingArea");
+		chart.yAxis.Ntics = 4;
+		chart.xAxis.Ntics = 8;
+		chart.addSeries(series);
+		chart.drawSeries("series1");
+		eout.appendChild(ecan);
+		if(x.length>20){
+			x =[];
+			y= [];
+		}
+	}
+}
 // 20180303.2249 ok
 function examClear() {
 	var div = document.getElementById("scriptResult");
@@ -1281,6 +1339,9 @@ function executeFunctionByValue(value) {
 			break;
 		case "Matrix addition Mathjax" :
 			examMatrixAdditionMathJax();
+			break;
+		case "Random Data Chart" :
+			examRandomDataChart();
 			break;
 		default:
 	}
