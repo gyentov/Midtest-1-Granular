@@ -980,7 +980,7 @@ function examDrawCircularMotion(){
 	var xc = 200;
 	var yc = 200;
 	var t = 0;
-	
+
 	// Define variable for setInterval
 	var cf;
 	var SIMULATING = false;
@@ -1037,6 +1037,179 @@ function examDrawCircularMotion(){
 		
 
 }
+
+function examDynamicColor(){
+	var div = document.getElementById("scriptResult");
+	div.innerHTML = "&nbsp;";
+	div.style.width = "500px";
+	div.style.height= "500px";
+	var can = document.createElement("canvas");
+	can.width = "500";
+	can.height = "500";
+	div.appendChild(can);
+	var cx = can.getContext("2d");
+
+	var btn1 = document.createElement("button");
+	btn1.innerHTML = "Start";
+	btn1.style.width = "42px";
+	btn1.style.height = "20px";
+	var sel = window.event.target;
+	sel.disabled = true;
+	btn1.addEventListener("click", function() {
+		if(btn1.innerHTML == "Start") {
+			btn1.innerHTML = "Stop";
+			sel.disabled = true;
+			iter = setInterval(simulate, 5);
+		} else {
+			btn1.innerHTML = "Start";
+			clearInterval(iter);
+			sel.disabled = false;
+		}
+	});
+	div.appendChild(btn1)
+
+	var gb=0;
+	var counter=0;
+	function simulate(){
+		var color = int2rgb(255, gb, gb );
+		cx.fillStyle = color;
+		cx.strokeStyle = "#0000cc";
+		cx.lineWidth = 6;
+		cx.beginPath();
+		cx.arc( 250, 250, 200, 0, 2 * Math.PI);
+		cx.fill();
+		cx.stroke();
+	
+		if(counter%2 == 0){
+			gb++;
+			if(gb==255){
+				counter++;
+			}
+		}else{
+			gb--;
+			if(gb==0){
+				counter++;
+			}
+		}
+	}
+
+
+
+
+}
+
+function examMatrixAdditionMathJax(){
+	var eout = document.getElementById("scriptResult");
+	eout.innerHTML = "";
+	eout.style.height = "400px";
+	
+	var elef = document.createElement("div");
+	elef.style.width = "125px";
+	elef.style.height = "250px"
+	elef.style.float = "left";
+	
+	var erig = document.createElement("div");
+	erig.style.float = "left";
+	erig.style.padding = "4px 50px 4px 50px";
+	erig.id = "mathjax-matrix"
+	
+	var etxa1 = document.createElement("textarea");
+	etxa1.style.width = "150px";
+	etxa1.style.height = "150px";
+	etxa1.style.overflowY = "scroll"
+	etxa1.value = "1 2 3\n"
+	+ "4 5 6\n"
+	+ "7 8 9\n"
+	+ "10 11 12";
+
+	var etxa2 = document.createElement("textarea");
+	etxa2.style.width = "150px";
+	etxa2.style.height = "150px";
+	etxa2.style.overflowY = "scroll"
+	etxa2.value = "1 2 3\n"
+	+ "4 5 6\n"
+	+ "7 8 9\n"
+	+ "10 11 12";
+	
+	var ebtn = document.createElement("button");
+	ebtn.innerHTML = "Add Matrices";
+	ebtn.style.width = "125px";
+	ebtn.addEventListener("click", btnClick);
+	
+	eout.appendChild(elef);
+		elef.appendChild(etxa1);
+		elef.appendChild(etxa2);
+		elef.appendChild(ebtn);
+	eout.appendChild(erig);
+	
+	function btnClick() {
+		var content1 = etxa1.value;
+		var lines1 = content1.split("\n");
+		var M1 = [];
+		for(var j = 0; j < lines1.length; j++) {
+			var words1 = lines1[j].split(" ");
+			var row1 = [];
+			for(var i = 0; i < words1.length; i++) {
+				var Mel1 = words1[i];
+				row1.push(parseFloat(Mel1));
+			}
+			M1.push(row1);
+		}
+		var content2 = etxa2.value;
+		var lines2 = content2.split("\n");
+		var M2 = [];
+		for(var j = 0; j < lines2.length; j++) {
+			var words2 = lines2[j].split(" ");
+			var row2 = [];
+			for(var i = 0; i < words2.length; i++) {
+				var Mel2 = words2[i];
+				row2.push(parseFloat(Mel2));
+			}
+			M2.push(row2);
+		}
+
+
+		var jumlah =[];
+		for(i=0; i<M1.length; i++){
+			jumlah[i] = new Array(M2[0].length);
+		}
+		
+		for(i=0;i<M1.length; i++){
+			for(j=0; j<M2[0].length; j++){
+				jumlah[i][j]= M1[i][j] +M2[i][j];
+			}
+		}
+
+		console.log(jumlah);
+				
+		var ROW = jumlah.length;
+		
+		var latex = "\\begin{equation}\n"
+			+ "M = \\left[\n"
+			+ "\\begin{array}\n";
+		var COL = jumlah[0].length;
+		latex += "{" + "c".repeat(COL) + "}\n";
+		for(var j = 0; j < ROW; j++) {
+			var arow = jumlah[j];
+			var COL = arow.length;
+			for(var i = 0; i < COL; i++) {
+				latex += jumlah[j][i];
+				if(i < COL - 1) {
+					latex += " & ";
+				} else {
+					latex += " \\\\\n";
+				}
+			}
+		}
+		latex += "\\end{array}\n"
+			+ "\\right]\n"
+			+ "\\end{equation}";
+		
+		updateMath("mathjax-matrix", latex)
+		
+	}
+}
+
 // 20180303.2308 ok
 function examDisplaySeries() {
 	var div = document.getElementById("scriptResult");
@@ -1100,8 +1273,14 @@ function executeFunctionByValue(value) {
 		case "Textarea and chart xy" :
 			examTextareaAndChartXY();
 			break;
-		case "examArrayOfCircle" :
+		case "Array of Circle" :
 			examArrayOfCircle();
+			break;
+		case "Dynamic Color" :
+			examDynamicColor();
+			break;
+		case "Matrix addition Mathjax" :
+			examMatrixAdditionMathJax();
 			break;
 		default:
 	}

@@ -36,7 +36,9 @@ function test_exam() {
 		["Three grains", examThreeGrains],
 		["Textarea and chart xy", examTextareaAndChartXY],
 		["Array of Circle", examArrayOfCircle],
-		["Draw Circular Motion", examDrawCircularMotion]
+		["Draw Circular Motion", examDrawCircularMotion],
+		["Dynamic Color", examDynamicColor],
+		["Matrix addition Mathjax", examMatrixAdditionMathJax]
 	];
 	
 	// Add menu using option element
